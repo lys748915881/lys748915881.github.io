@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+<pre>sdfsdfsfsdfs	sfsdfsfs	dfsdfsdf
+sdfsdfsf	sdfsf	sdfsdfs	dsdf
+fsdfsfsdf\tvvwvwe\twvwvwvw\t\nvwevwevwevw\tvwebwebwbwb\tbwebwebw</pre>
+<input type="file" id="file" onchange="getFiles()"></input>
+    <table class="tables">
+        <tr>    
+            <td class="td_1_1" tabindex="400">3</td>
+            <td class="td_1_2" tabindex="410">3</td>
+            <td class="td_1_3" tabindex="420">3</td>
+            <td class="td_1_4" tabindex="430">3</td>
+        </tr>
+        <tr>    
+            <td class="td_2_1">3</td>
+            <td class="td_2_2">3</td>
+            <td class="td_2_3">3</td>
+            <td class="td_2_4">3</td>
+        </tr>
+        <tr>    
+            <td class="td_3_1">3</td>
+            <td class="td_3_2">3</td>
+            <td class="td_3_3">3</td>
+            <td class="td_3_4">3</td>
+        </tr>
+    </table>
+    <textarea
+            class="hiden-text" 
+            resizable="none">
+            </textarea>
+<!-- built files will be auto injected -->
+</body>
+<script>
+function getFiles(e) {
+debugger
+};
+    window.onload = function(){
+        let dom = document.getElementsByClassName('tables')[0];
+        dom.addEventListener('mousedown',function(e){
+            let start = e.target.className;
+            let startList = start.split('_');
+            console.log(startList);
+            dom.addEventListener('mouseup',function(b){
+                let end = b.target.className;
+                let endList = end.split('_');
+                console.log(endList);
+                let startX = null; let endX = null;
+                startX = parseInt(startList[2]) > parseInt(endList[2]) ? parseInt(endList[2]) : parseInt(startList[2]);
+                endX = parseInt(startList[2]) > parseInt(endList[2]) ? parseInt(startList[2]) : parseInt(endList[2]);
+                let startY = null; let endY = null;
+                startY = parseInt(startList[1]) > parseInt(endList[1]) ? parseInt(endList[1]) : parseInt(startList[1]);
+                endY = parseInt(startList[1]) > parseInt(endList[1]) ? parseInt(startList[1]) : parseInt(endList[1])
+                console.log(startX,endX,startY,endY);
+                for(let i = startX; i <= endX; i++){
+                    for(let j = startY; j <= endY; j++){
+                        let currentClassName = 'td_'+j+'_'+i;
+                        console.log(currentClassName);
+                        let currentDom = document.getElementsByClassName(currentClassName)[0];
+                        currentDom && (currentDom.className = currentClassName +' selected');
+                    }
+                }
+            })
+        })
+    }
+</script>
+<style>
+    body {
+        text-align: center;
+    }
+    table{
+        width: 400px;
+        height: 100%;
+        border-top: 1px solid #efefef;
+        border-left: 1px solid #efefef;
+    }
+    tr {
+        height: 50px;
+        width: 100%;
+    } 
+    td {
+        border-right: 1px solid #efefef;
+        border-bottom: 1px solid #efefef;
+    }
+    .selected{
+        background-color: #0000ff;
+    }
+</style>
+</html>
